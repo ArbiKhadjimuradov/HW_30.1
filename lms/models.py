@@ -1,5 +1,5 @@
-
 from django.db import models
+from django.conf import settings
 
 
 class Course(models.Model):
@@ -18,6 +18,9 @@ class Course(models.Model):
         null=True,
         verbose_name="Превью",
         help_text="Загрузите превью")
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True
+    )
 
     class Meta:
         verbose_name = "Курс"
@@ -56,6 +59,9 @@ class Lesson(models.Model):
         null=True,
         verbose_name="Ссылка на видео",
         help_text="Укажите ссылку на видео")
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True
+    )
 
     class Meta:
         verbose_name = "Урок"
