@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'users',
     'lms',
-    'django_filters'
+    'django_filters',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -102,6 +103,8 @@ DATABASES = {
         "PORT": os.getenv("PORT"),
     }
 }
+
+STRIPE_API_KEY = os.getenv("STRIPE_API_KEY")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
