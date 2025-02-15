@@ -21,6 +21,7 @@ ipython = "^8.32.0"
 requests = "^2.32.3"
 djangorestframework-simplejwt = "^5.4.0"
 django-filter = "^24.3"
+coverage = "^7.6.12"
 
 
 [build-system]
