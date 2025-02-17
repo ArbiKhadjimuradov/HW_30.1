@@ -18,7 +18,9 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractUser):
-    email = models.EmailField(unique=True, verbose_name="Email", help_text="Укажите почту")
+    email = models.EmailField(
+        unique=True, verbose_name="Email", help_text="Укажите почту"
+    )
     username = None
     phone_number = models.CharField(
         max_length=15,
@@ -107,4 +109,8 @@ class Payment(models.Model):
         verbose_name_plural = "Оплаты"
 
     def __str__(self):
-        return f"Оплата {self.id} пользователя {self.user.email}" if self.user else "Оплата без пользователя"
+        return (
+            f"Оплата {self.id} пользователя {self.user.email}"
+            if self.user
+            else "Оплата без пользователя"
+        )

@@ -1,4 +1,3 @@
-from lms.models import Course, Lesson
 from rest_framework import serializers
 from lms.validators import validate_link
 from lms.models import Course, Lesson, Subscription, CoursePayment
@@ -6,6 +5,7 @@ from lms.models import Course, Lesson, Subscription, CoursePayment
 
 class LessonSerializer(serializers.ModelSerializer):
     """Валидация."""
+
     video = serializers.CharField(validators=[validate_link])
 
     class Meta:
@@ -19,7 +19,14 @@ class CourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ["id", "name", "description", "preview", "quantity_lessons", "info_lessons"]
+        fields = [
+            "id",
+            "name",
+            "description",
+            "preview",
+            "quantity_lessons",
+            "info_lessons",
+        ]
 
     def get_quantity_lessons(self, obj):
         "получаем количество уроков"

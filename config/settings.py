@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 import os
 from pathlib import Path
+
+from django.conf.global_settings import EMAIL_HOST_USER
 from dotenv import load_dotenv
 from datetime import timedelta
 
@@ -45,6 +47,7 @@ INSTALLED_APPS = [
     'lms',
     'django_filters',
     'drf_yasg',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -151,3 +154,25 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
+
+# URL-адрес брокера сообщений
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+# URL-адрес брокера результатов, также Redis
+CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
+# Часовой пояс для работы Celery
+CELERY_TIMEZONE = TIME_ZONE
+# Флаг отслеживания выполнения задач
+CELERY_TASK_TRACK_STARTED = True
+# Максимальное время на выполнение задачи
+CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+CELERY_BEAT_SCHEDULE = {
+    'checking_for_active_users': {
+        'task': 'users.tasks.checking_for_active_users',
+        'schedule': timedelta(days=1),
+    },
+}
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

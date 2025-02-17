@@ -13,7 +13,11 @@ class PaymentViewSet(ModelViewSet):
     queryset = Payment.objects.all()
     serializer_class = PaymentSerializer
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
-    filterset_fields = ("paid_course", "paid_lesson", "form_of_payment",)
+    filterset_fields = (
+        "paid_course",
+        "paid_lesson",
+        "form_of_payment",
+    )
     ordering_fields = ("date_of_payment",)
 
 
@@ -24,6 +28,7 @@ class UserViewSet(ModelViewSet):
 
 class UserCreateAPIView(CreateAPIView):
     """CRUD для регистрации пользователя"""
+
     serializer_class = UserSerializer
     queryset = User.objects.all()
     permission_classes = (AllowAny,)

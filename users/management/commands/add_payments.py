@@ -4,20 +4,16 @@ from users.models import Payment, User
 
 
 class Command(BaseCommand):
-    help = 'Add test data to the database'
+    help = "Add test data to the database"
 
     def handle(self, *args, **options):
         #  Создаем курсы
         course1 = Course.objects.create(
-            name="Джанго",
-            description="Добрый добрый джанго",
-            preview=None
+            name="Джанго", description="Добрый добрый джанго", preview=None
         )
 
         course2 = Course.objects.create(
-            name="Пайтон",
-            description="Пайтон великолепный",
-            preview=None
+            name="Пайтон", description="Пайтон великолепный", preview=None
         )
 
         self.stdout.write(self.style.SUCCESS("Курсы созданы успешно."))
@@ -28,7 +24,7 @@ class Command(BaseCommand):
             course=course1,
             description="Джанго начало",
             preview=None,
-            video=None
+            video=None,
         )
 
         lesson2 = Lesson.objects.create(
@@ -36,7 +32,7 @@ class Command(BaseCommand):
             course=course1,
             description="Джанго продвинутый",
             preview=None,
-            video=None
+            video=None,
         )
 
         lesson3 = Lesson.objects.create(
@@ -44,7 +40,7 @@ class Command(BaseCommand):
             course=course2,
             description="Пайтон начало",
             preview=None,
-            video=None
+            video=None,
         )
 
         self.stdout.write(self.style.SUCCESS("Уроки созданы успешно."))
