@@ -1,12 +1,11 @@
-from rest_framework.viewsets import ModelViewSet
-from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
-from .models import Payment
-from .serializers import PaymentSerializer
-from .serializers import PaymentSerializer, UserSerializer
+from rest_framework import filters
 from rest_framework.generics import CreateAPIView
-from users.models import User
 from rest_framework.permissions import AllowAny
+from rest_framework.viewsets import ModelViewSet
+from users.models import User
+from .models import Payment
+from .serializers import PaymentSerializer, UserSerializer
 
 
 class PaymentViewSet(ModelViewSet):

@@ -1,7 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import SimpleRouter
 from users.apps import UsersConfig
-from .views import PaymentViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from .views import PaymentViewSet, UserCreateAPIView, UserViewSet
 from rest_framework.permissions import AllowAny
