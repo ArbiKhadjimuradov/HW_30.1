@@ -59,6 +59,7 @@ class Payment(models.Model):
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
+        db_constraint=False,
         verbose_name="Пользователь",
     )
     date_of_payment = models.DateField(
