@@ -5,10 +5,10 @@ FROM python:3.12-slim
 WORKDIR /lms
 
 # Устанавливаем зависимости системы
-RUN apt-get update && apt-get install -y \\\\
-    gcc \\\\
-    libpq-dev \\\\
-    && apt-get clean \\\\
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libpq-dev \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Копируем файл зависимостей в контейнер
@@ -21,7 +21,7 @@ RUN pip install poetry && poetry install --no-root
 COPY . .
 
 # Определяем переменные окружения
-ENV SECRET_KEY=django-insecure-z079pa16^k@!xhat^n3pt_b$mtz*uxv=azjpcah%om@p8eh2pn
+ENV SECRET_KEY="django-insecure-z079pa16^k@!xhat^n3pt_b$mtz*uxv=azjpcah%om@p8eh2pn"
 ENV CELERY_BROKER_URL="redis://127.0.0.1:6379/0"
 ENV CELERY_BACKEND="redis://127.0.0.1:6379/0"
 
