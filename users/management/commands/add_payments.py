@@ -72,4 +72,4 @@ class Command(BaseCommand):
             form_of_payment="cash",
         )
 
-        self.stdout.write(self.style.SUCCESS("Данные о платежах успешно загружены!"))
+        self.stdout.write(self.style.SUCCESS("Данные о платежах успешно загр"))
